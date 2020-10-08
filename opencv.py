@@ -33,16 +33,7 @@ while True:
     cv2.imshow("test",test_image)
     
     result = model.predict(test_image.reshape(1, 28,28, 1)/255)
-    prediction = {'A': result[0][0], 
-                  'B': result[0][1], 
-                  'C': result[0][2],
-                  'D': result[0][3],
-                  'E': result[0][4],
-                  'F': result[0][5],
-                  'G':result[0][6],
-                  'H':result[0][7],
-                  'I':result[0][8],
-                  'K':result[0][9],
+    prediction = {'K':result[0][9],
                   'L':result[0][10],
                   'M':result[0][12],
                   'N':result[0][13],
@@ -58,6 +49,14 @@ while True:
                   'X':result[0][22],
                   'Y':result[0][23]
                   }
+        
+    k = 0
+    for i in range(65,74):
+        prediction[chr(i)] = k
+        k += 1
+
+    prediction = dict()
+
     
     prediction = sorted(prediction.items(), key=operator.itemgetter(1), reverse=True)
     
